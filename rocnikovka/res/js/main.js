@@ -1,11 +1,30 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext('2d');
+const progressText = document.getElementById("progress");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 let jump = false;
 let speed = 4;
+let platformNum = 27;
+
+
+
+class Finish {//cil
+    constructor() {
+        this.x = speed*150 + 8750;
+        this.y = 0;
+        this.width = 60;
+        this.height = canvas.height;
+    };
+    draw() {//vykresleni
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(this.x, this.y, this.width, this.height)
+    }
+}
+     
+
 
 class Ball {//ctverec
     constructor() {
@@ -59,6 +78,7 @@ class Ball {//ctverec
             
             else if (player.x >= 100) {
                 platform.x -= speed  ;  //pohyb v pravo
+                finish.x -= speed/(platformNum  );
 
 
             }
@@ -68,7 +88,9 @@ class Ball {//ctverec
 
             }
 
-
+            if (player.x >= finish.x) {
+                window.location.reload();
+            }
 
 
         });
@@ -95,7 +117,7 @@ class Platform {//co asi
 
 let dead = 0;
 
-
+const finish = new Finish();//cil
 const player = new Ball();//ctverec za ktereho se hraje
 const floor = new Platform(0,canvas.height - 70,canvas.width,70);
 const platforms = [new Platform(speed*150, canvas.height - 120, 300, 100), //asi tak tisíc platforem
@@ -124,7 +146,7 @@ const platforms = [new Platform(speed*150, canvas.height - 120, 300, 100), //asi
                     new Platform(speed*150 + 8020, canvas.height - 180,50, 50),
                     new Platform(speed*150 + 8210, canvas.height - 180,50, 50),
                     new Platform(speed*150 + 8400, canvas.height - 180,50, 50),
-                    new Platform(speed*150 + 8590, canvas.height - 180,50, 50),
+                    new Platform(speed*150 + 8590, canvas.height - 180,50, 50),//27
 
 
                 
@@ -140,10 +162,30 @@ function animate() { //vykresluje ctverec
     ctx.fillStyle = "black";
     floor.draw();
     player.update();
+    finish.draw();
 }
 
 animate();
 
+
+function bar(){
+    let barWidth = 0;
+    const bar = setInterval(frame,10);
+
+    function frame(){
+        if(barWidth>=100 || dead){
+            clearInterval(bar);
+        }
+        else{
+            barWidth += 1/(platformNum- 1); // 1/pocet platforem 
+            progressText.style.width = barWidth + "%";
+            progressText.innerHTML = Math.round(barWidth) + "%";
+        }
+    }
+
+}
+
+bar();
 addEventListener('keydown', ({ keyCode }) => {// skok
     if (keyCode == 32 && jump) { // aby se jen skocilo (nefunguje skok ve vzduchu jsem god
         if (dead) {
