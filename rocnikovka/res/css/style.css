@@ -1,9 +1,9 @@
+*{
+    user-select: none;
+}
+
 body{
-    background-image:url(../img/gameBackground.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
+    background-color: rgb(37, 37, 37);
 }
 
 #wriper{
@@ -13,13 +13,66 @@ body{
 }
 
 #start{
-    color:rgb(73, 172, 218);
+    color:white;
     background: none;
     position: flex;
-    margin-top: 5%   ;
-    margin-left: 33.5%;
-    font-size: 200px;
-    font-family: 'IBM Plex Sans', sans-serif;
+    margin-top: 3%   ;
+    margin-left: 42.5%;
+    font-size: 50px;
     border: none;
     cursor: progress;
 }
+
+#name{
+    color:white;
+    font-size: 75px;
+    position: flex;
+    margin-left: 32%;
+}
+
+#made{
+    color:white;
+    position: flex;
+    font-size: 25px;
+    margin-left: 41%;
+    margin-top: 5%;
+}
+
+#tutBtn{
+    color:white;
+    background: none;
+    position: flex;
+    margin-top: 3%   ;
+    margin-left: 42.25%;
+    font-size: 50px;
+    border: none;
+    cursor: progress;
+}
+
+#tutorial{
+    color:white;
+    background: none;
+    position: flex;
+    margin-top: 15%   ;
+    margin-left: 35%;
+    font-size: 30px;
+    border:none;
+}
+
+#menuBtn{
+    color:red;
+    background: none;
+    position: flex;
+    margin-top: 3% ;
+    font-size: 50px;
+    border: none;
+    margin-left: 35%;
+    cursor: progress;
+}
+
+#videoDiv{
+    width: 320;
+    height: 200;
+    margin-left: 2000000%;
+}
+

@@ -12,4 +12,10 @@ body{
     height: 30px;
 }
 
+#box{
+    margin-left: 50%;
+    margin-top:10%;
+    position: absolute;
+}
+
 
