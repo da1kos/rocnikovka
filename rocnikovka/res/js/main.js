@@ -3,10 +3,8 @@ const ctx = canvas.getContext('2d');
 const progressText = document.getElementById("progress");
 const video = document.createElement('video');
 
-video.src = 'res/img/MiskoL.mp4';
 
-
-
+video.src = "res/img/MiskoL.mp4";
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -30,7 +28,9 @@ class Finish {//cil
     }
 }
 
+let playerLook = new Image;
 
+playerLook.src = "res/img/pixil-frame-0_1.png"
 
 class Ball {//ctverec
     constructor() {
@@ -39,10 +39,10 @@ class Ball {//ctverec
         this.velocity = 2;
         this.width = 60;
         this.height = 60;
+        this.look = playerLook;
     };
     draw() {//vykresleni
-        ctx.fillStyle = "violet";
-        ctx.fillRect(this.x, this.y, this.width, this.height)
+        ctx.drawImage(this.look,this.x, this.y, this.width, this.height)
     }
 
     update() {//aktualizuje
@@ -72,18 +72,21 @@ class Ball {//ctverec
                 jump = true;
             }
             console.log(i);
-
+            video.loop = true;
+            video.autoplay = true;
             if (dead) {
                 
+               
                 if (prehrani) {
                     prehrani--;
-
-                    video.autoplay = true;
-                    video.controls = true;                   
+                    
+                   
+                    
+                    video.controls = false;                   
                     video.muted = false;
                     video.width = 210; // in px
                     const box = document.getElementById('box');
-
+                    box.appendChild(video);
 
                     box.appendChild(video);
                 }
@@ -96,6 +99,7 @@ class Ball {//ctverec
                     player.y += 0.05;
                 }
             }
+            
 
             else if (player.x >= 100) {
                 platform.x -= speed;  //pohyb v pravo
@@ -109,9 +113,12 @@ class Ball {//ctverec
 
             }
 
-            if (player.x >= finish.x) {
+            
+            if (player.x + player.width >= finish.x) {
 
+                window.location = "./end.html";
             }
+            
 
 
         });

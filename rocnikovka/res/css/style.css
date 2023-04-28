@@ -76,3 +76,21 @@ body{
     margin-left: 2000000%;
 }
 
+#EndWrapper{
+    width: 100%;
+    margin-top: 20%;
+    background: none;
+    margin-left: -10%;
+}
+
+#end{ 
+    color:white;
+    background: none;
+    position: flex;
+    margin-top: 15%   ;
+    margin-left: 35%;
+    font-size: 30px;
+    border:none;
+}
+
+
